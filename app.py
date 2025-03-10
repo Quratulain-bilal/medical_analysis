@@ -13,17 +13,18 @@ st.set_page_config(
 )
 
 # Security setup
-API_KEY = 'AIzaSyBWoYAmrL9tOes0yoUOiFk6dAlcwBavEYA'
+API_KEY = 'AIzaSyBWoYAmrL9tOes0yoUOiFk6dAlcwBavEYA'  # Replace with your actual API key
 genai.configure(api_key=API_KEY)
 
 # Medical model configuration
 model = genai.GenerativeModel(
     'gemini-1.5-pro',
-    system_instruction="""
-    You are a trauma surgeon analyzing medical images.
-    Focus on: injury classification, anatomical landmarks, and treatment protocols.
-    Follow HIPAA guidelines. Avoid non-clinical interpretations.
-    """
+    generation_config={
+        "temperature": 0.9,  # Adjust for creativity
+        "top_p": 1,
+        "top_k": 1,
+        "max_output_tokens": 2048,  # Adjust for response length
+    }
 )
 
 # Custom CSS for modern and attractive UI
@@ -138,7 +139,7 @@ body {
 }
 
 .image-container img {
-    max-width: 150%;
+    max-width: 100%;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
