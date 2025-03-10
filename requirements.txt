@@ -1,0 +1,4 @@
+streamlit==1.32.2
+Pillow==10.1.0
+google-generativeai==0.3.2
+urllib3==2.0.7
